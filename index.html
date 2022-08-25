@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dior</title>
+    <title>Homepage | DIOR</title>
 
 
     <style>
@@ -15,21 +15,39 @@
             border: 0;
 
             text-decoration: none;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: myfont;
 
             color: black;
             background-color: white;
+        }
+        a
+        {
+            text-decoration: none;
+            color: black;
+        }
+        @font-face {
+            font-family: myfont;
+            src: url(./Font/Century\ Gothic\ Std\ Regular.otf);
+        }
+        @font-face {
+            font-family: vogue;
+            src: url(./Font/Vogue.ttf);
         }
 
         #header
         {
             width: 100vw;
             height: 60px;
-            display: flex;
-            justify-content: left;
+            display: block;
 
             padding: 0 48px 0 48px;
-            background-color: red;
+
+            opacity: 0;
+            transition: 1s;
+        }
+        .sticky
+        {
+            opacity: 1 !important;
         }
         #header-navigation
         {
@@ -37,17 +55,39 @@
         }
         #header-navigation a
         {
-            display: table;
-            height: 100%;
+            display: block;
+            line-height: 4rem;
+            height: 60px;
             width: fit-content;
-            font-size: 18px;
-            padding: 0 5px 0 5px;
-            background-color: aqua;
+            padding: 0 .9rem 0 .125rem;
+
+            font-size: .8125rem;
+
+            transition: 0.1s;
         }
-        #header-navigation a span 
+        #header-navigation a:hover
         {
-            display: table-cell;
-            vertical-align: middle;
+            font-weight: 900;
+        }
+        #header-navigation a::after
+        {
+            content: "";
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 60px;
+            width: 100vw;
+            height: 0;
+            transition: 0.5s;
+            background-color: rgb(226, 226, 226);
+        }
+        #header-navigation a:hover::after
+        {
+            height: 1px;
+        }
+        @keyframes FadeIn 
+        {
+            
         }
         #header-logo
         {
@@ -55,17 +95,58 @@
             margin: auto;
             height: fit-content;
             width: fit-content;
-            display: table;
+            display: block;
+            
             top: 0;
             left: 0;
             right: 0;
             height: 60px;
+            line-height: 4rem;
+
+            font-size: 2.5rem;
+            font-family: vogue;
+        }
+
+        #nav-menu
+        {
+            width: 100vw;
+            height: 60px;
+            display: none;
+            position: sticky;
+            top: 0;
+            padding: 0 48px 0 48px;
+            transition: 0.5s;
+        }
+
+        #main
+        {
+            width: 100%;
+            height: 1000px;
+            margin-top: 60px;
+
+            background-color: red;
+        }
+        .main-content
+        {
+            
+        }
+        #main-left
+        {
+            left: 0;
             background-color: aquamarine;
         }
-        #header-logo span
+        #main-left:hover
         {
-            display: table-cell;
-            vertical-align: middle;
+            width: 60%;
+        }
+        #main-right
+        {
+            right: 0;
+            background-color: aqua;
+        }
+        #main-right:hover
+        {
+            width: 60%;
         }
     </style>
 
@@ -76,30 +157,59 @@
 
     <!--  HEADER  -->
 
-    <nav id="header">
+    <nav id="header" class="sticky">
         <div id="header-navigation">
-            <a href="#">
-                <span>Fashion & Accessories</span>
+            <a href="#" style="left: 0;">
+                <span>FASHION & ACCESSORIES</span>
             </a>
             
-            <a href="#">
-                <span>Fashion & Accessories</span>
+            <a href="#" style="right: 0;">
+                <span>FRAGRANCE & BEAUTY</span>
             </a>
         </div>
         
-
-        <a id="header-logo" href="#">
-            <span>DIOR</span>
-        </a>
+        <div id="header-logo">
+            <a href="#">DIOR</a>
+        </div>
     </nav>
 
+    <div id="nav-menu">
+        <div id="header-navigation">
+            <a href="#" style="left: 0;">
+                <span>FASHION & ACCESSORIES</span>
+            </a>
+            
+            <a href="#" style="right: 0;">
+                <span>FRAGRANCE & BEAUTY</span>
+            </a>
+        </div>
+    </div>
+
+    <div id="main">
+        <a href="#" class="main-content" >
+            <!--img src="/img/1.webp" alt=""-->
+        </a>
+
+        <a href="#" class="main-content">
+            <!--img src="/img/1.webp" alt=""-->
+        </a>
+    </div>
 </body>
 
 
 <script>
+    //Navigation bar Hide on scroll effect
+    window.addEventListener('scroll', () =>
+    {
+        const Header = document.getElementById('header');
+        Header.classList.toggle('sticky', window.scrollY == 0);
+    })
 
-
-
+    document.getElementById('header-navigation').onmouseover = () =>
+    {
+        console.log('thats my shit my wave');
+        document.getElementById('nav-menu').style.display = 'block';
+    }
 </script>
 
 
