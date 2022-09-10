@@ -45,7 +45,7 @@
             opacity: 0;
             transition: 1s;
         }
-        .sticky
+        .visable
         {
             opacity: 1 !important;
         }
@@ -121,32 +121,61 @@
         #main
         {
             width: 100%;
-            height: 1000px;
+            height: 500px;
             margin-top: 60px;
-
-            background-color: red;
         }
         .main-content
         {
-            
+            width: 50vw;
+            height: 500px;
+            transition: 0.4s;
+            background-repeat: no-repeat;
+            background-size: 56vw;
+            text-align: center;
+        }
+        .main-content span
+        {
+            height: 500px;
+            width: 56vw;
+            font-weight: 900;
+            font-size: 1.8vw;
+            text-shadow: 0px 0px 20px rgb(65, 65, 65);
+            display: table-cell;
+            text-align: center;
+            vertical-align: middle;
+            color: white;
         }
         #main-left
         {
+            z-index: 0;
+            position: absolute;
             left: 0;
-            background-color: aquamarine;
-        }
-        #main-left:hover
-        {
-            width: 60%;
+            background-image: url('./img/1.jpeg');
+            background-position: left;
+            background-position: 0% 48%;
         }
         #main-right
         {
+            z-index: 0;
+            position: absolute;
             right: 0;
-            background-color: aqua;
+            background-image: url('./img/2.jpg');
+            background-position: 100% 10%;
         }
-        #main-right:hover
+        .hover
         {
-            width: 60%;
+            width: 56vw;
+        }
+        .un-hover
+        {
+            width: 44vw;
+        }
+
+        #footer
+        {
+            width: 100%;
+            height: 600px;
+            background-color: rgb(187, 187, 235);
         }
     </style>
 
@@ -157,7 +186,7 @@
 
     <!--  HEADER  -->
 
-    <nav id="header" class="sticky">
+    <nav id="header" class="visable">
         <div id="header-navigation">
             <a href="#" style="left: 0;">
                 <span>FASHION & ACCESSORIES</span>
@@ -186,13 +215,17 @@
     </div>
 
     <div id="main">
-        <a href="#" class="main-content" >
-            <!--img src="/img/1.webp" alt=""-->
+        <a href="#" id="main-left" class="main-content">
+            <span>FASHION & ACCESSORIES</span>
         </a>
 
-        <a href="#" class="main-content">
-            <!--img src="/img/1.webp" alt=""-->
+        <a href="#" id="main-right" class="main-content">
+            <span>FRAGRANCE & BEAUTY</span>
         </a>
+    </div>
+
+    <div id="footer">
+
     </div>
 </body>
 
@@ -202,13 +235,38 @@
     window.addEventListener('scroll', () =>
     {
         const Header = document.getElementById('header');
-        Header.classList.toggle('sticky', window.scrollY == 0);
+        Header.classList.toggle('visable', window.scrollY == 0);
     })
-
+    /*
     document.getElementById('header-navigation').onmouseover = () =>
     {
         console.log('thats my shit my wave');
         document.getElementById('nav-menu').style.display = 'block';
+    }*/
+    document.getElementById('main-left').onmouseover = () =>
+    {
+        document.getElementById('main-left').classList.add('hover');
+        document.getElementById('main-right').classList.add('un-hover');
+
+        document.getElementById('main-left').classList.remove('un-hover');
+        document.getElementById('main-right').classList.remove('hover');
+    }
+    document.getElementById('main-right').onmouseover = () =>
+    {
+        document.getElementById('main-left').classList.add('un-hover');
+        document.getElementById('main-right').classList.add('hover');
+
+        document.getElementById('main-left').classList.remove('hover');
+        document.getElementById('main-right').classList.remove('un-hover');
+    }
+    document.getElementById('main').onmouseleave = () =>
+    {
+        console.log("kir");
+        document.getElementById('main-left').classList.remove('hover');
+        document.getElementById('main-right').classList.remove('un-hover');
+
+        document.getElementById('main-left').classList.remove('un-hover');
+        document.getElementById('main-right').classList.remove('hover');
     }
 </script>
 
